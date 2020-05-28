@@ -1,0 +1,15 @@
+.__products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.__product-image {
+  width: 66% !important;
+  align-self: center;
+}
+
+.__product-links {
+  display: flex;
+  justify-content: center;
+}

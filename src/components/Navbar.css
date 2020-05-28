@@ -1,0 +1,42 @@
+.__navbar-body {
+  justify-content: flex-end;
+}
+
+.__navbar-links-desktop {
+  display: none !important;
+}
+
+.__navbar-icon {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(260deg)
+    brightness(107%) contrast(101%);
+  width: 1.3rem;
+  height: auto;
+}
+
+.__navbar-cart {
+  position: relative;
+}
+
+.__navbar-cart-badge {
+  position: absolute;
+  top: 0;
+  right: -6px;
+}
+
+.__navbar-menu {
+  cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .__navbar-body {
+    justify-content: space-between;
+  }
+
+  .__navbar-links-desktop {
+    display: flex !important;
+  }
+
+  .__navbar-menu {
+    display: none !important;
+  }
+}
