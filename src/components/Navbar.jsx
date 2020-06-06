@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BsNavbar from "react-bootstrap/Navbar";
@@ -10,20 +10,21 @@ import menuIcon from "../../public/icons/menu.svg";
 import crossIcon from "../../public/icons/cross.svg";
 import "./Navbar.css";
 
-const Navbar = ({ links, categories = "" }) => {
+const Navbar = ({ links }) => {
+  const categories = useSelector((state) => state.categories);
   const cart = useSelector((state) => state.cart);
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   useEffect(() => {
-    const widthChange = (mq) => {
-      if (mq.matches) {
+    const handleWidthChange = (breakpoint) => {
+      if (breakpoint.matches) {
         setMenuIsOpen(false);
       }
     };
-    const mqDesktop = window.matchMedia("(min-width: 500px)");
-    mqDesktop.addListener(widthChange);
-    widthChange(mqDesktop);
+    const breakpointDesktop = window.matchMedia("(min-width: 500px)");
+    breakpointDesktop.addListener(handleWidthChange);
+    handleWidthChange(breakpointDesktop);
     return () => {
-      mqDesktop.removeListener(widthChange);
+      breakpointDesktop.removeListener(handleWidthChange);
     };
   }, []);
   return (
@@ -44,12 +45,7 @@ const Navbar = ({ links, categories = "" }) => {
             <Link className="nav-link __navbar-cart" to="/cart">
               <img className="__navbar-icon" src={cartIcon} />
               <Badge className="__navbar-cart-badge" pill variant="danger">
-                {cart.length
-                  ? cart.reduce(
-                      (accumulator, item) => accumulator + item.amount,
-                      0
-                    )
-                  : ""}
+                {cart.length ? cart.length : ""}
               </Badge>
             </Link>
             <Nav.Link
