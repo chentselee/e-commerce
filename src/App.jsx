@@ -6,6 +6,7 @@ import { fetchCategories } from "./redux/actions/categoriesActions";
 import Navbar from "./components/Navbar";
 import Category from "./components/Category";
 import Products from "./components/Products";
+import Detail from "./components/Detail";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -42,6 +43,12 @@ const App = () => {
             <div className="__layout-with-aside">
               <Category />
               <Products />
+            </div>
+          </Route>
+          <Route exact path="/:category/:id">
+            <div className="__layout-with-aside">
+              <Category />
+              <Detail />
             </div>
           </Route>
         </Switch>

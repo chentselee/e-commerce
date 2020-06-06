@@ -5,9 +5,9 @@ import BsNavbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Badge from "react-bootstrap/Badge";
 import Menu from "./Menu";
-import cartIcon from "../../public/icons/shopping-cart.svg";
-import menuIcon from "../../public/icons/menu.svg";
-import crossIcon from "../../public/icons/cross.svg";
+import cartIcon from "../icons/shopping-cart.svg";
+import menuIcon from "../icons/menu.svg";
+import crossIcon from "../icons/cross.svg";
 import "./Navbar.css";
 
 const Navbar = ({ links }) => {

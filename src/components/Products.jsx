@@ -6,7 +6,7 @@ import { addToCartAction } from "../redux/actions/cartActions";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./Products.css";
-import iphone from "../../public/iphone-se2-white.png";
+import iphone from "../images/iphone-se2-white.png";
 
 const Products = () => {
   const dispatch = useDispatch();
