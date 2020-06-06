@@ -1,12 +1,12 @@
 import "./style.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
-import store from "./redux/store";
+import { useDispatch } from "react-redux";
 import { fetchCategories } from "./redux/actions/categoriesActions";
 import Navbar from "./components/Navbar";
 import Category from "./components/Category";
 import Products from "./components/Products";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
@@ -16,19 +16,18 @@ const links = [
   { name: "聯絡我們", path: "contact" },
 ];
 
-store.dispatch(fetchCategories());
-
 const App = () => {
-  const categories = useSelector((state) => state.categories);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
   return (
     <Router>
-      <Navbar links={links} categories={categories} />
+      <Navbar links={links} />
       <div className="__layout">
         <Switch>
           <Route exact path="/">
-            <div className="__layout-with-aside">
-              <Category categories={categories} />
-            </div>
+            <Home />
           </Route>
           <Route path="/about">
             <About />
@@ -41,7 +40,7 @@ const App = () => {
           </Route>
           <Route path="/:category">
             <div className="__layout-with-aside">
-              <Category categories={categories} />
+              <Category />
               <Products />
             </div>
           </Route>
