@@ -92,13 +92,13 @@ const Cart = () => {
       {cart.length ? (
         <Table bordered hover className={matchDesktop ? "" : "table-sm"}>
           <thead className="thead-dark">
-            <tr>
-              <th>#</th>
+            <tr className="__cart-header-row">
+              <th className="__cart-no-col">#</th>
               <th>商品</th>
               <th>價格</th>
-              <th>數量</th>
+              <th className="__cart-amount-col">數量</th>
               <th>小計</th>
-              <th></th>
+              <th className="__cart-remove-col"></th>
             </tr>
           </thead>
           <tbody>

@@ -1,5 +1,19 @@
 .__cart {
+  --total-cols: 6;
+  --manual-set-cols: 3;
+  --no-col: 4%;
+  --amount-col: 6%;
+  --remove-col: 5%;
+  --col: calc(
+    (100% - (var(--no-col) + var(--amount-col) + var(--remove-col))) /
+      (var(--total-cols) - var(--manual-set-cols))
+  );
   font-size: 0.67rem;
+}
+
+.__cart tr > th:nth-child(1),
+.__cart tr > td:nth-child(1) {
+  text-align: center;
 }
 
 @media (min-width: 500px) {
@@ -48,4 +62,17 @@
 
 .__cart-item-subtotal {
   text-decoration: underline 2px;
+}
+
+.__cart-header-row > th {
+  width: var(--col);
+}
+.__cart-header-row > .__cart-no-col {
+  width: var(--no-col);
+}
+.__cart-header-row > .__cart-amount-col {
+  width: var(--amount-col);
+}
+.__cart-header-row > .__cart-remove-col {
+  width: var(--remove-col);
 }
