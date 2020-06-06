@@ -9,17 +9,22 @@ import "./Products.css";
 import iphone from "../../public/iphone-se2-white.png";
 
 const Products = () => {
-  const { category } = useParams();
+  const dispatch = useDispatch();
 
+  const { category } = useParams();
+  const categories = useSelector((state) => state.categories);
   const products = useSelector((state) => state.products);
   const cart = useSelector((state) => state.cart);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(fetchProduct({ category }));
+    if (categories.length > 0) {
+      const currentCategory = categories.find(
+        (_category) => _category.name === category
+      );
+      dispatch(fetchProduct({ category: currentCategory._id }));
+    }
     return () => dispatch(cleanUpProducts());
-  }, [category, dispatch]);
+  }, [category, categories, dispatch]);
 
   const handleAddToCart = useCallback(
     (id, name, price) => {
