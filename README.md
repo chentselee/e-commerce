@@ -9,5 +9,5 @@ An e-commerce site built with React, Redux and Bootstrap.
 - Bootstrap
 - React Bootstrap
 
-📦 Build tool:
-- Webpack
+📦 Setup tool:
+- create-react-app
