@@ -117,7 +117,7 @@ const Cart = () => {
       ) : (
         <div>還沒有任何商品...快去選購吧~</div>
       )}
-      <Button variant="secondary" onClick={() => history.goBack()}>
+      <Button variant="secondary mt-1" onClick={() => history.goBack()}>
         ←
       </Button>
     </div>
