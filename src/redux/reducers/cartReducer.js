@@ -3,7 +3,7 @@ import { saveToSession, loadFromSession } from "./rootReducer";
 
 const KEY = "cart";
 let newState;
-export default (state = loadFromSession(KEY), action) => {
+export default (state = loadFromSession(KEY) || [], action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
       newState = [
