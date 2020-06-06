@@ -39,13 +39,13 @@ const App = () => {
           <Route path="/cart">
             <Cart />
           </Route>
-          <Route path="/:category">
+          <Route exact path="/:category">
             <div className="__layout-with-aside">
               <Category />
               <Products />
             </div>
           </Route>
-          <Route exact path="/:category/:id">
+          <Route exact path="/:category/:name">
             <div className="__layout-with-aside">
               <Category />
               <Detail />

@@ -9,9 +9,7 @@ export default (state = loadFromSession(KEY) || [], action) => {
       newState = [
         ...state,
         {
-          id: action.payload.id,
-          name: action.payload.name,
-          price: action.payload.price,
+          ...action.payload.product,
           amount: 1,
         },
       ];
@@ -20,7 +18,7 @@ export default (state = loadFromSession(KEY) || [], action) => {
 
     case actionTypes.CHANGE_AMOUNT_IN_CART:
       newState = state.map((item) => {
-        if (item.id !== action.payload.id) return item;
+        if (item._id !== action.payload._id) return item;
         return {
           ...item,
           amount: action.payload.amount,
@@ -29,7 +27,7 @@ export default (state = loadFromSession(KEY) || [], action) => {
       saveToSession(KEY, newState);
       return newState;
     case actionTypes.REMOVE_FROM_CART:
-      newState = state.filter((item) => item.id !== action.payload.id);
+      newState = state.filter((item) => item._id !== action.payload._id);
       saveToSession(KEY, newState);
       return newState;
     default:

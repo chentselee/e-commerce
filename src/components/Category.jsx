@@ -11,7 +11,7 @@ const Category = () => {
     <ListGroup className="__aside">
       {categories.map((category) => (
         <ListGroup.Item key={category.name}>
-          <Link to={category.name}>{category.display_name}</Link>
+          <Link to={"/" + category.name}>{category.display_name}</Link>
           <Badge pill variant="primary" className="__category-num-badge">
             {category.num_products}
           </Badge>

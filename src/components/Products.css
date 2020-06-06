@@ -9,6 +9,12 @@
   align-self: center;
 }
 
+.__product-image-placeholder {
+  padding: 30% 10%;
+  background-color: lightslategray;
+  text-align: center;
+}
+
 .__product-links {
   display: flex;
   justify-content: center;

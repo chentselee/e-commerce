@@ -36,7 +36,7 @@ const Navbar = ({ links }) => {
         <BsNavbar.Collapse className="__navbar-body">
           <Nav className="__navbar-links-desktop">
             {links.map((link) => (
-              <Link key={link.path} className="nav-link" to={link.path}>
+              <Link key={link.path} className="nav-link" to={"/" + link.path}>
                 {link.name}
               </Link>
             ))}

@@ -8,13 +8,14 @@ import {
   changeAmountInCart,
   removeFromCartAction,
 } from "../redux/actions/cartActions";
+import ProductLink from "../components/ProductLink";
 import "./Cart.css";
 
-const CartItem = ({ id, no, name, price, amount }) => {
+const CartItem = ({ _id, no, name, price, amount, category }) => {
   const [currentAmount, setCurrentAmount] = useState(amount);
   const dispatch = useDispatch();
   const handleAmountChange = (e) => {
-    dispatch(changeAmountInCart(id, e.target.value));
+    dispatch(changeAmountInCart(_id, parseInt(e.target.value)));
     setCurrentAmount(e.target.value);
   };
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -25,13 +26,15 @@ const CartItem = ({ id, no, name, price, amount }) => {
     setModalIsOpen(true);
   };
   const handleRemoveFromCart = () => {
-    dispatch(removeFromCartAction(id));
+    dispatch(removeFromCartAction(_id));
     handleModalClose();
   };
   return (
     <tr className="__cart-item">
       <td>{no}</td>
-      <td>{name}</td>
+      <td>
+        <ProductLink category={category} name={name} />
+      </td>
       <td>${price}</td>
       <td>
         <input
@@ -103,21 +106,14 @@ const Cart = () => {
           </thead>
           <tbody>
             {cart.map((item, index) => (
-              <CartItem
-                key={item.id}
-                id={item.id}
-                no={index + 1}
-                name={item.name}
-                price={item.price}
-                amount={item.amount}
-              />
+              <CartItem key={item._id} no={index + 1} {...item} />
             ))}
           </tbody>
         </Table>
       ) : (
         <div>還沒有任何商品...快去選購吧~</div>
       )}
-      <Button variant="secondary mt-1" onClick={() => history.goBack()}>
+      <Button variant="secondary mt-1" onClick={history.goBack}>
         ←
       </Button>
     </div>

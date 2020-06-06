@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { addToCartAction } from "../redux/actions/cartActions";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import ProductLink from "./ProductLink";
 import "./Products.css";
-import iphone from "../images/iphone-se2-white.png";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ const Products = () => {
   }, [category, categories, dispatch]);
 
   const handleAddToCart = useCallback(
-    (id, name, price) => {
-      dispatch(addToCartAction(id, name, price));
+    (item) => {
+      dispatch(addToCartAction(item));
     },
     [dispatch]
   );
@@ -37,13 +37,19 @@ const Products = () => {
       {products.length > 0 ? (
         products.map((product) => (
           <Card key={product.name}>
-            <Card.Img className="__product-image" src={iphone} />
+            {product.image ? (
+              <Card.Img className="__product-image" src={product.image} />
+            ) : (
+              <div className="__product-image-placeholder">沒有圖片</div>
+            )}
             <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
+              <Card.Title>
+                <ProductLink category={category} name={product.name} />
+              </Card.Title>
               <Card.Subtitle>${product.price}元</Card.Subtitle>
             </Card.Body>
             <Card.Footer className="__product-links">
-              {cart.find((item) => item.id === product._id) ? (
+              {cart.find((item) => item._id === product._id) ? (
                 <Button variant="primary" size="sm" disabled>
                   已加入購物車
                 </Button>
@@ -51,9 +57,7 @@ const Products = () => {
                 <Button
                   variant="primary"
                   size="sm"
-                  onClick={() =>
-                    handleAddToCart(product._id, product.name, product.price)
-                  }
+                  onClick={() => handleAddToCart(product)}
                 >
                   加入購物車
                 </Button>

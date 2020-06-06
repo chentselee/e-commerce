@@ -1,16 +1,16 @@
 import * as actionTypes from "../actionTypes";
 
-export const addToCartAction = (id, name, price) => ({
+export const addToCartAction = (product) => ({
   type: actionTypes.ADD_TO_CART,
-  payload: { id, name, price },
+  payload: { product },
 });
 
-export const changeAmountInCart = (id, amount) => ({
+export const changeAmountInCart = (_id, amount) => ({
   type: actionTypes.CHANGE_AMOUNT_IN_CART,
-  payload: { id, amount },
+  payload: { _id, amount },
 });
 
-export const removeFromCartAction = (id) => ({
+export const removeFromCartAction = (_id) => ({
   type: actionTypes.REMOVE_FROM_CART,
-  payload: { id },
+  payload: { _id },
 });
