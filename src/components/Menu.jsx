@@ -15,8 +15,8 @@ const Menu = ({ links, categories = "", handleClick }) => {
         <>
           <ListGroup.Item>商品</ListGroup.Item>
           {categories.map((category) => (
-            <ListGroup.Item key={category.path} className="__menu-subitem">
-              <Link to={category.path}>{category.display_name}</Link>
+            <ListGroup.Item key={category.name} className="__menu-subitem">
+              <Link to={category.name}>{category.display_name}</Link>
             </ListGroup.Item>
           ))}
         </>
