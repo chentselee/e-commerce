@@ -43,7 +43,11 @@ const Navbar = ({ links }) => {
           </Nav>
           <Nav>
             <Link className="nav-link __navbar-cart" to="/cart">
-              <img className="__navbar-icon" src={cartIcon} />
+              <img
+                className="__navbar-icon"
+                src={cartIcon}
+                alt="shopping cart icon"
+              />
               <Badge className="__navbar-cart-badge" pill variant="danger">
                 {cart.length ? cart.length : ""}
               </Badge>
@@ -56,6 +60,7 @@ const Navbar = ({ links }) => {
               <img
                 className="__navbar-icon __navbar-menu"
                 src={menuIsOpen ? crossIcon : menuIcon}
+                alt="menu icon"
               />
             </Nav.Link>
           </Nav>
