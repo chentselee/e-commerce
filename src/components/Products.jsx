@@ -21,7 +21,8 @@ const Products = () => {
       const currentCategory = categories.find(
         (_category) => _category.name === category
       );
-      dispatch(fetchProduct({ category: currentCategory._id }));
+      currentCategory &&
+        dispatch(fetchProduct({ category: currentCategory._id }));
     }
     return () => dispatch(cleanUpProducts());
   }, [category, categories, dispatch]);
@@ -40,7 +41,9 @@ const Products = () => {
             {product.image ? (
               <Card.Img className="__product-image" src={product.image} />
             ) : (
-              <div className="__product-image-placeholder">沒有圖片</div>
+              <div className="__product-image-placeholder">
+                <span>沒有圖片</span>
+              </div>
             )}
             <Card.Body>
               <Card.Title>
