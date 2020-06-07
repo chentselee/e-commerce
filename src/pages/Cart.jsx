@@ -33,7 +33,7 @@ const CartItem = ({ _id, no, name, price, amount, category }) => {
     <tr className="__cart-item">
       <td>{no}</td>
       <td>
-        <ProductLink category={category} name={name} />
+        <ProductLink category={category.name} name={name} />
       </td>
       <td>${price}</td>
       <td>
