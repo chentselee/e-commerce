@@ -10,7 +10,11 @@ export const fetchCategoriesFailure = (error) => ({
 });
 export const fetchCategories = () => {
   return (dispatch) => {
-    fetch("http://localhost:8000/categories")
+    fetch(
+      process.env.NODE_ENV === "development"
+        ? process.env.API
+        : "http://localhost:8000/categories"
+    )
       .then((res) => res.json())
       .then((data) => dispatch(fetchCategoriesSuccess(data)))
       .catch((error) => fetchCategoriesFailure(error));

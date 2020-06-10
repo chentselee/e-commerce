@@ -13,7 +13,12 @@ export const cleanUpProducts = () => ({ type: actionTypes.CLEAN_UP_PRODUCTS });
 export const fetchProduct = (params = {}) => {
   return (dispatch) => {
     axios
-      .get("http://localhost:8000/products", { params })
+      .get(
+        process.env.NODE_ENV === "development"
+          ? process.env.API
+          : "http://localhost:8000/products",
+        { params }
+      )
       .then((res) => res.data)
       .then((data) => dispatch(fetchProductSuccess(data)))
       .catch((error) => console.error(error));
