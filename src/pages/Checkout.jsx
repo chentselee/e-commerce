@@ -33,7 +33,8 @@ const fields = {
   senderPhone: {
     initialValue: "",
     validation: Yup.string()
-      .matches(/([0-9])/)
+      .matches(/([0-9])/, "請輸入電話號碼")
+      .min(8, "請輸入電話號碼")
       .max(10, "不能超過10個字元")
       .required("必填項目"),
     props: {
@@ -318,74 +319,76 @@ const Checkout = () => {
             }}
           >
             {(formik) => (
-              <Form>
-                <Switch>
-                  {steps.map((step, index) => (
-                    <Route key={index} path={`${path}/${index}`}>
-                      {step}
-                    </Route>
-                  ))}
-                </Switch>
-                {helperText ? <BsForm.Text>{helperText}</BsForm.Text> : null}
-                <nav className="__checkout-nav mt-2">
-                  {step.current !== 0 ? (
-                    <Link to={`${path}/${step.current - 1}`}>
-                      <Button
-                        variant="primary"
-                        onClick={() => (step.current -= 1)}
-                      >
-                        上一步
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Link to="/cart">
-                      <Button variant="secondary">←購物車</Button>
-                    </Link>
-                  )}
-                  {step.current !== maxStep ? (
-                    <>
-                      {step.current === maxStep - 1 ? (
+              <BsForm noValidate>
+                <Form>
+                  <Switch>
+                    {steps.map((step, index) => (
+                      <Route key={index} path={`${path}/${index}`}>
+                        {step}
+                      </Route>
+                    ))}
+                  </Switch>
+                  {helperText ? <BsForm.Text>{helperText}</BsForm.Text> : null}
+                  <nav className="__checkout-nav mt-2">
+                    {step.current !== 0 ? (
+                      <Link to={`${path}/${step.current - 1}`}>
+                        <Button
+                          variant="primary"
+                          onClick={() => (step.current -= 1)}
+                        >
+                          上一步
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to="/cart">
+                        <Button variant="secondary">←購物車</Button>
+                      </Link>
+                    )}
+                    {step.current !== maxStep ? (
+                      <>
+                        {step.current === maxStep - 1 ? (
+                          <Button
+                            variant="success"
+                            disabled={formik.isValidating}
+                            onClick={() => {
+                              formik.validateForm().then(() => {
+                                let message = "";
+                                if (formik.isValid) {
+                                  step.current += 1;
+                                  history.push(`${path}/${step.current}`);
+                                } else {
+                                  message = "請確認所有資料都填寫正確";
+                                }
+                                setHelperText(message);
+                              });
+                            }}
+                          >
+                            確認
+                          </Button>
+                        ) : (
+                          <Link to={`${path}/${step.current + 1}`}>
+                            <Button
+                              variant="primary"
+                              onClick={() => (step.current += 1)}
+                            >
+                              下一步
+                            </Button>
+                          </Link>
+                        )}
+                      </>
+                    ) : (
+                      <Link to={`${path}/success`}>
                         <Button
                           variant="success"
-                          disabled={formik.isValidating}
-                          onClick={() => {
-                            formik.validateForm().then(() => {
-                              let message = "";
-                              if (formik.isValid) {
-                                step.current += 1;
-                                history.push(`${path}/${step.current}`);
-                              } else {
-                                message = "請確認所有資料都填寫正確";
-                              }
-                              setHelperText(message);
-                            });
-                          }}
+                          onClick={() => (success.current = true)}
                         >
-                          確認
+                          確認並送出
                         </Button>
-                      ) : (
-                        <Link to={`${path}/${step.current + 1}`}>
-                          <Button
-                            variant="primary"
-                            onClick={() => (step.current += 1)}
-                          >
-                            下一步
-                          </Button>
-                        </Link>
-                      )}
-                    </>
-                  ) : (
-                    <Link to={`${path}/success`}>
-                      <Button
-                        variant="success"
-                        onClick={() => (success.current = true)}
-                      >
-                        確認並送出
-                      </Button>
-                    </Link>
-                  )}
-                </nav>
-              </Form>
+                      </Link>
+                    )}
+                  </nav>
+                </Form>
+              </BsForm>
             )}
           </Formik>
         </Route>

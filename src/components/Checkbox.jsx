@@ -9,10 +9,11 @@ const Checkbox = ({ label, helperText = "", required = false, ...props }) => {
     <Form.Group>
       <section className="__checkbox-row">
         <Form.Control
-          type="checkbox"
           {...field}
           {...props}
+          type="checkbox"
           className="__checkbox-input"
+          isInvalid={meta.touched && !meta.error}
         />
         <Form.Text
           htmlFor={props.id || props.name}

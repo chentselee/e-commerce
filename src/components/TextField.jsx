@@ -15,11 +15,17 @@ const TextField = ({
         {label}
         {required ? "*" : ""}
       </Form.Label>
-      <Form.Control size="sm" {...field} {...props} />
-      <Form.Text>
-        {helperText}
+      <Form.Control
+        {...field}
+        {...props}
+        size="sm"
+        isValid={meta.touched && !meta.error}
+        isInvalid={meta.touched && meta.error}
+      />
+      <Form.Text>{helperText}</Form.Text>
+      <Form.Control.Feedback type="invalid">
         {meta.touched && meta.error ? meta.error : ""}
-      </Form.Text>
+      </Form.Control.Feedback>
     </Form.Group>
   );
 };
