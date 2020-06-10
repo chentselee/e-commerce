@@ -314,12 +314,13 @@ const Checkout = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={Yup.object(validationSchema)}
+            validateOnMount={true}
             onSubmit={(values) => {
               alert(values);
             }}
           >
             {(formik) => (
-              <BsForm noValidate>
+              <BsForm noValidate as="section">
                 <Form>
                   <Switch>
                     {steps.map((step, index) => (
@@ -350,17 +351,16 @@ const Checkout = () => {
                           <Button
                             variant="success"
                             disabled={formik.isValidating}
-                            onClick={() => {
-                              formik.validateForm().then(() => {
-                                let message = "";
-                                if (formik.isValid) {
-                                  step.current += 1;
-                                  history.push(`${path}/${step.current}`);
-                                } else {
-                                  message = "請確認所有資料都填寫正確";
-                                }
-                                setHelperText(message);
-                              });
+                            onClick={async () => {
+                              await formik.validateForm();
+                              let message = "";
+                              if (formik.isValid) {
+                                step.current += 1;
+                                history.push(`${path}/${step.current}`);
+                              } else {
+                                message = "請確認所有資料都填寫正確";
+                              }
+                              setHelperText(message);
                             }}
                           >
                             確認
