@@ -76,3 +76,8 @@
 .__cart-header-row > .__cart-remove-col {
   width: var(--remove-col);
 }
+
+.__cart-nav {
+  display: flex;
+  justify-content: space-between;
+}

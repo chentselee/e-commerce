@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   changeAmountInCart,
@@ -113,9 +113,14 @@ const Cart = () => {
       ) : (
         <div>還沒有任何商品...快去選購吧~</div>
       )}
-      <Button variant="secondary mt-1" onClick={history.goBack}>
-        ←
-      </Button>
+      <nav className="__cart-nav">
+        <Button variant="secondary mt-1" onClick={history.goBack}>
+          ←
+        </Button>
+        <Link to="/cart/checkout/0">
+          <Button variant="primary mt-1">結帳去→</Button>
+        </Link>
+      </nav>
     </div>
   );
 };

@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 const links = [
   { name: "關於", path: "about" },
@@ -36,8 +37,11 @@ const App = () => {
           <Route path="/contact">
             <Contact />
           </Route>
-          <Route path="/cart">
+          <Route exact path="/cart">
             <Cart />
+          </Route>
+          <Route path="/cart/checkout">
+            <Checkout />
           </Route>
           <Route exact path="/:category">
             <div className="__layout-with-aside">
