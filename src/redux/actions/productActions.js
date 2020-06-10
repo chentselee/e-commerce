@@ -14,7 +14,7 @@ export const fetchProduct = (params = {}) => {
   return (dispatch) => {
     axios
       .get(
-        process.env.NODE_ENV === "development"
+        process.env.NODE_ENV === "production"
           ? process.env.API
           : "http://localhost:8000/products",
         { params }

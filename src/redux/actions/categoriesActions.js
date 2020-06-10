@@ -11,7 +11,7 @@ export const fetchCategoriesFailure = (error) => ({
 export const fetchCategories = () => {
   return (dispatch) => {
     fetch(
-      process.env.NODE_ENV === "development"
+      process.env.NODE_ENV === "production"
         ? process.env.API
         : "http://localhost:8000/categories"
     )
