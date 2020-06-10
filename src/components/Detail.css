@@ -30,7 +30,6 @@
   padding-bottom: 0;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 
 .__detail-title {
@@ -45,11 +44,10 @@
 .__detail-actions {
   padding: 1rem;
   padding-top: 0;
-  flex-basis: 100%;
-  flex-grow: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 @media (min-width: 500px) {

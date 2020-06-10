@@ -60,6 +60,11 @@ const Detail = () => {
                   加入購物車
                 </Button>
               )}
+              <Link to="/cart">
+                <Button variant="primary" size="sm">
+                  前往購物車
+                </Button>
+              </Link>
             </footer>
           </section>
         </article>
