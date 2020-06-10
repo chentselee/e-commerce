@@ -13,7 +13,8 @@ const Checkbox = ({ label, helperText = "", required = false, ...props }) => {
           {...props}
           type="checkbox"
           className="__checkbox-input"
-          isInvalid={meta.touched && !meta.error}
+          isValid={meta.touched && !meta.error}
+          isInvalid={meta.touched && meta.error}
         />
         <Form.Text
           htmlFor={props.id || props.name}
@@ -23,10 +24,10 @@ const Checkbox = ({ label, helperText = "", required = false, ...props }) => {
           {required ? "*" : ""}
         </Form.Text>
       </section>
-      <Form.Text>
-        {helperText}
+      <Form.Text>{helperText}</Form.Text>
+      <Form.Control.Feedback type="invalid">
         {meta.touched && meta.error ? meta.error : ""}
-      </Form.Text>
+      </Form.Control.Feedback>
     </Form.Group>
   );
 };
