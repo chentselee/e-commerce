@@ -1,0 +1,14 @@
+.__checkbox-row {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.__checkbox-input {
+  width: auto !important;
+  height: auto !important;
+}
+
+.__checkbox-label {
+  margin: 0 !important;
+}

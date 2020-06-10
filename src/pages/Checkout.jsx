@@ -15,6 +15,7 @@ import Button from "react-bootstrap/Button";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import TextField from "../components/TextField";
 import SelectField from "../components/SelectField";
+import Checkbox from "../components/Checkbox";
 import "./Checkout.css";
 
 const fields = {
@@ -177,6 +178,24 @@ const Step1 = () => {
 };
 
 const Step2 = () => {
+  const { values, setFieldValue } = useFormikContext();
+  const handleApplySender = (e) => {
+    const senderFields = [
+      "sender",
+      "senderPhone",
+      "senderAddress",
+      "senderEmail",
+    ];
+    const receiverFields = [
+      "receiver",
+      "receiverPhone",
+      "receiverAddress",
+      "receiverEmail",
+    ];
+    receiverFields.forEach((field, index) => {
+      setFieldValue(field, values[senderFields[index]]);
+    });
+  };
   return (
     <>
       <h1>收件人</h1>
@@ -184,6 +203,12 @@ const Step2 = () => {
       <TextField {...fields.receiverPhone.props} />
       <TextField {...fields.receiverAddress.props} />
       <TextField {...fields.receiverEmail.props} />
+      <Checkbox
+        id="applySender"
+        name="applySender"
+        label="同購買人"
+        onClick={handleApplySender}
+      />
     </>
   );
 };
@@ -330,7 +355,7 @@ const Checkout = () => {
                                 step.current += 1;
                                 history.push(`${path}/${step.current}`);
                               } else {
-                                message = "請檢查所有資料都填寫正確";
+                                message = "請確認所有資料都填寫正確";
                               }
                               setHelperText(message);
                             });
