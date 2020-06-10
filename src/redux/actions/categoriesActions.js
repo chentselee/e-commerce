@@ -12,7 +12,7 @@ export const fetchCategories = () => {
   return (dispatch) => {
     fetch(
       process.env.NODE_ENV === "production"
-        ? process.env.API
+        ? process.env.API + "/categories"
         : "http://localhost:8000/categories"
     )
       .then((res) => res.json())
