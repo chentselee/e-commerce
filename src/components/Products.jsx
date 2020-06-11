@@ -5,6 +5,7 @@ import { useParams, Redirect } from "react-router-dom";
 import { addToCartAction } from "../redux/actions/cartActions";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 import ProductLink from "./ProductLink";
 import "./Products.css";
 
@@ -68,7 +69,9 @@ const Products = () => {
             </Card.Footer>
           </Card>
         ))
-      ) : categories.find((_category) => _category.name === category) ? null : (
+      ) : categories.find((_category) => _category.name === category) ? (
+        <Spinner animation="border" />
+      ) : (
         <Redirect to="/" />
       )}
     </div>
