@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct, cleanUpProducts } from "../redux/actions/productActions";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { addToCartAction } from "../redux/actions/cartActions";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -68,8 +68,8 @@ const Products = () => {
             </Card.Footer>
           </Card>
         ))
-      ) : (
-        <div>沒有商品</div>
+      ) : categories.find((_category) => _category.name === category) ? null : (
+        <Redirect to="/" />
       )}
     </div>
   );
