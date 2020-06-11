@@ -117,9 +117,11 @@ const Cart = () => {
         <Button variant="secondary mt-1" onClick={history.goBack}>
           ←
         </Button>
-        <Link to="/cart/checkout/0">
-          <Button variant="primary mt-1">結帳去→</Button>
-        </Link>
+        {cart.length !== 0 ? (
+          <Link to="/cart/checkout/0">
+            <Button variant="primary mt-1">結帳去→</Button>
+          </Link>
+        ) : null}
       </nav>
     </div>
   );
