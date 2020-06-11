@@ -70,7 +70,7 @@ const Products = () => {
           </Card>
         ))
       ) : categories.find((_category) => _category.name === category) ? (
-        <Spinner animation="border" />
+        <Spinner animation="border" variant="primary" />
       ) : (
         <Redirect to="/" />
       )}
