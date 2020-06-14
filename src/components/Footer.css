@@ -2,9 +2,7 @@
   width: 100%;
   padding: 1rem 10%;
   background-color: #f7f7f7;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative;
   font-size: 0.7rem;
   display: flex;
   flex-wrap: wrap;

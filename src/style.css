@@ -1,5 +1,9 @@
 .__layout {
   padding: 2rem;
+  height: auto;
+  min-height: 73vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .__aside {

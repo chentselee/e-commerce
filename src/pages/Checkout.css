@@ -1,8 +1,9 @@
 @media (min-width: 500px) {
   .__checkout {
     padding: 2rem;
-    max-width: 400px;
-    margin: 0 auto;
+    width: 400px;
+    flex-shrink: 0;
+    align-self: center;
     border: 1px solid rgba(0, 0, 0, 0.3);
   }
 }
