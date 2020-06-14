@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import Footer from "./components/Footer";
 
 const links = [
   { name: "關於", path: "about" },
@@ -62,6 +63,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
+      <Footer />
     </Router>
   );
 };
