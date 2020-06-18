@@ -30,6 +30,10 @@ export default (state = loadFromSession(KEY) || [], action) => {
       newState = state.filter((item) => item._id !== action.payload._id);
       saveToSession(KEY, newState);
       return newState;
+    case actionTypes.EMPTY_CART:
+      newState = [];
+      saveToSession(KEY, newState);
+      return newState;
     default:
       return state;
   }

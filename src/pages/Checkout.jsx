@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { emptyCardAction } from "../redux/actions/cartActions";
 import { Formik, Form, useFormikContext } from "formik";
 import * as Yup from "yup";
 import {
@@ -275,6 +277,7 @@ const Checkout = () => {
   const step = useRef(+location.pathname.split("/").pop());
   const maxStep = steps.length - 1;
   const success = useRef(false);
+  const dispatch = useDispatch();
   return (
     <main className="__checkout">
       <Switch>
@@ -380,7 +383,10 @@ const Checkout = () => {
                       <Link to={`${path}/success`}>
                         <Button
                           variant="success"
-                          onClick={() => (success.current = true)}
+                          onClick={() => {
+                            success.current = true;
+                            dispatch(emptyCardAction());
+                          }}
                         >
                           確認並送出
                         </Button>
