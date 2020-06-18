@@ -13,7 +13,7 @@ const Detail = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProduct({ name: name.replaceAll("-", " ") }));
+    dispatch(fetchProduct({ name: name.replace(/-/g, " ") }));
     return () => {
       dispatch(cleanUpProducts());
     };
