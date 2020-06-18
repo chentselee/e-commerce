@@ -47,7 +47,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+}
+
+.__detail-actions > :not(:last-child) {
+  margin-right: 1rem;
+}
+
+@supports (display: subgrid) {
+  .__detail-actions {
+    gap: 1rem;
+  }
+
+  .__detail-actions > :not(:last-child) {
+    margin-right: 0;
+  }
 }
 
 @media (min-width: 500px) {

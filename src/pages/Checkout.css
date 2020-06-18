@@ -16,10 +16,36 @@
 .__checkout-confirm {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+}
+
+.__checkout-confirm > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+@supports (display: subgrid) {
+  .__checkout-confirm {
+    row-gap: 1rem;
+  }
+
+  .__checkout-confirm > :not(:last-child) {
+    margin-bottom: 0;
+  }
 }
 
 .__checkout-confirm-field {
   display: flex;
-  column-gap: 1rem;
+}
+
+.__checkout-confirm-field > :not(:last-child) {
+  margin-right: 1rem;
+}
+
+@supports (display: subgrid) {
+  .__checkout-confirm-field {
+    column-gap: 1rem;
+  }
+
+  .__checkout-confirm-field > :not(:last-child) {
+    margin-right: 0;
+  }
 }
