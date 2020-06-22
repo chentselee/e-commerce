@@ -48,7 +48,12 @@ const Navbar = ({ links }) => {
                 src={cartIcon}
                 alt="shopping cart icon"
               />
-              <Badge className="__navbar-cart-badge" pill variant="danger">
+              <Badge
+                className="__navbar-cart-badge"
+                pill
+                variant="danger"
+                data-testid="num-items"
+              >
                 {cart.length ? cart.length : ""}
               </Badge>
             </Link>

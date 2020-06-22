@@ -14,7 +14,12 @@ const Category = () => {
         categories.map((category) => (
           <ListGroup.Item key={category.name}>
             <Link to={"/" + category.name}>{category.display_name}</Link>
-            <Badge pill variant="primary" className="__category-num-badge">
+            <Badge
+              pill
+              variant="primary"
+              className="__category-num-badge"
+              data-testid="num-products"
+            >
               {category.num_products}
             </Badge>
           </ListGroup.Item>
