@@ -90,26 +90,39 @@ const Cart = () => {
   }, []);
 
   const history = useHistory();
+  const [total, setTotal] = useState();
+  useEffect(() => {
+    setTotal(
+      cart.reduce(
+        (accumulator, currentItem) =>
+          accumulator + currentItem.price * currentItem.amount,
+        0
+      )
+    );
+  }, [cart]);
   return (
     <div className="__cart">
       {cart.length ? (
-        <Table bordered hover className={matchDesktop ? "" : "table-sm"}>
-          <thead className="thead-dark">
-            <tr className="__cart-header-row">
-              <th className="__cart-no-col">#</th>
-              <th>商品</th>
-              <th>價格</th>
-              <th className="__cart-amount-col">數量</th>
-              <th>小計</th>
-              <th className="__cart-remove-col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {cart.map((item, index) => (
-              <CartItem key={item._id} no={index + 1} {...item} />
-            ))}
-          </tbody>
-        </Table>
+        <>
+          <Table bordered hover className={matchDesktop ? "" : "table-sm"}>
+            <thead className="thead-dark">
+              <tr className="__cart-header-row">
+                <th className="__cart-no-col">#</th>
+                <th>商品</th>
+                <th>價格</th>
+                <th className="__cart-amount-col">數量</th>
+                <th>小計</th>
+                <th className="__cart-remove-col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item, index) => (
+                <CartItem key={item._id} no={index + 1} {...item} />
+              ))}
+            </tbody>
+          </Table>
+          <p className="__cart-total">總計：＄{total}</p>
+        </>
       ) : (
         <div>還沒有任何商品...快去選購吧~</div>
       )}

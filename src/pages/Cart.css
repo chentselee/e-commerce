@@ -64,6 +64,12 @@
   text-decoration: underline 2px;
 }
 
+.__cart-total {
+  font-size: larger;
+  text-align: right;
+  text-decoration: underline;
+}
+
 .__cart-header-row > th {
   width: var(--col);
 }
